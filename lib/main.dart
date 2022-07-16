@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'second_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -84,37 +85,27 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        child: TextButton(
-            child: Text('Next Page'),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SecondPage()));
-            }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('Button 2 Pressed');
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class SecondPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Page'),
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go Back'),
+        child: Column(
+          children: <Widget>[
+            TextButton(
+              child: Text('AAAAAAAA'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecondPage(str: 'AAAAAAAA')));
+              },
+            ),
+            TextButton(
+              child: Text('BBBBBBBB'),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecondPage(str: 'BBBBBBBB')));
+              },
+            )
+          ],
         ),
       ),
     );
