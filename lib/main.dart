@@ -49,6 +49,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String lblValue = 'Epic Text';
+  Row rw = Row(children: <Widget>[
+    Icon(Icons.star),
+    Icon(Icons.star),
+    Icon(Icons.star),
+    Icon(Icons.star),
+    Icon(Icons.star),
+  ]);
 
   void _incrementCounter() {
     setState(() {
@@ -75,17 +83,39 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: Container(
-              child: Image(
-        image: NetworkImage('https://picsum.photos/200/300'),
-      ))),
+      body: Container(
+        child: TextButton(
+            child: Text('Next Page'),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SecondPage()));
+            }),
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          print('Button 2 Pressed');
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Page'),
+      ),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go Back'),
+        ),
       ),
     );
   }
