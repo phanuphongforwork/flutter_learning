@@ -49,15 +49,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+
+  GotoSecondPage(BuildContext context) async {
+    final result = await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => SecondPage(str: 'AAAAAAAA')));
+
+    _scaffoldMessengerKey.currentState
+        ?.showSnackBar(const SnackBar(content: Text("Hiiiii")));
+  }
+
   int _counter = 0;
-  String lblValue = 'Epic Text';
-  Row rw = Row(children: <Widget>[
-    Icon(Icons.star),
-    Icon(Icons.star),
-    Icon(Icons.star),
-    Icon(Icons.star),
-    Icon(Icons.star),
-  ]);
 
   void _incrementCounter() {
     setState(() {
@@ -79,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      key: _scaffoldMessengerKey,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -90,10 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               child: Text('AAAAAAAA'),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SecondPage(str: 'AAAAAAAA')));
+                GotoSecondPage(context);
               },
             ),
             TextButton(
